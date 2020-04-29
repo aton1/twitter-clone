@@ -28,10 +28,12 @@
   }
 }
 
-.notifications:not(:last-child) {
+.notification:not(:last-child) {
   margin-bottom: 0
 }
 
 .panel-heading {
   font-weight: 400;
 }
+
+
