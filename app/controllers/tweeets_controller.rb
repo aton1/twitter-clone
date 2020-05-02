@@ -7,11 +7,13 @@ class TweeetsController < ApplicationController
   def index
     @tweeets = Tweeet.all.order("created_at DESC")
     @tweeet = Tweeet.new
+    user_signed_in? ? @users = User.all.where.not(id: current_user.id).shuffle : @users = User.all.shuffle
   end
 
   # GET /tweeets/1
   # GET /tweeets/1.json
   def show
+    @users = User.all.where.not(id: current_user.id).shuffle
   end
 
   # GET /tweeets/new
@@ -21,6 +23,7 @@ class TweeetsController < ApplicationController
 
   # GET /tweeets/1/edit
   def edit
+    @users = User.all.where.not(id: current_user.id).shuffle
   end
 
   # POST /tweeets

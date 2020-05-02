@@ -32,6 +32,7 @@ gem 'bulma-rails', '~> 0.8.0'
 gem 'simple_form', '~> 5.0', '>= 5.0.2'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'devise', '~> 4.7', '>= 4.7.1'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -61,6 +62,7 @@ group :development do
   end
   gem 'rspec-rails', '~> 4.0'
   gem 'rails-controller-testing'
+  gem 'faker', '~> 2.11'
 end
 
 group :test do
