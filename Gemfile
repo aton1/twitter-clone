@@ -40,6 +40,14 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails', '~> 5.2'
+  gem 'faker', '~> 2.11'
+  # Make queries look better
+  gem 'awesome_print', '~> 1.8'
+  %w[rspec-core rspec-expectations rspec-mocks rspec-support].each do |lib|
+  gem lib, :git => "https://github.com/rspec/#{lib}.git", :branch => 'master'
+  end
+  gem 'rspec-rails', '~> 4.0'
 end
 
 group :development do
@@ -55,14 +63,6 @@ group :development do
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
   # Make errors better looking
   gem 'better_errors', '~> 2.7'
-  # Make queries look better
-  gem 'awesome_print', '~> 1.8'
-  %w[rspec-core rspec-expectations rspec-mocks rspec-support].each do |lib|
-  gem lib, :git => "https://github.com/rspec/#{lib}.git", :branch => 'master'
-  end
-  gem 'rspec-rails', '~> 4.0'
-  gem 'rails-controller-testing'
-  gem 'faker', '~> 2.11'
 end
 
 group :test do
@@ -71,6 +71,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

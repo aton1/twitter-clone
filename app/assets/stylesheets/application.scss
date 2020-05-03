@@ -29,11 +29,14 @@
 }
 
 .notification:not(:last-child) {
-  margin-bottom: 0
+  margin-bottom: 0;
+  border-radius: 0;
 }
 
 .panel-heading {
   font-weight: 400;
 }
 
-
+.error {
+  color: red;
+}

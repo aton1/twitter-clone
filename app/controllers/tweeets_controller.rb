@@ -7,10 +7,10 @@ class TweeetsController < ApplicationController
   def index
     @tweeets = Tweeet.all.order("created_at DESC")
     @tweeet = Tweeet.new
-    user_signed_in? ? @users = User.all.where.not(id: current_user.id).shuffle : @users = User.all.shuffle
+    user_signed_in? ? @users = User.order("RANDOM()").limit(4).where.not(id: current_user.id) : @users = User.order("RANDOM()").limit(4)
   end
 
-  # GET /tweeets/1
+  # GET /tweeets
   # GET /tweeets/1.json
   def show
     @users = User.all.where.not(id: current_user.id).shuffle
@@ -29,15 +29,15 @@ class TweeetsController < ApplicationController
   # POST /tweeets
   # POST /tweeets.json
   def create
-    @tweeet = current_user.tweeets.build(tweeet_params)
+    @tweeet ||= current_user.tweeets.build(tweeet_params)
 
     respond_to do |format|
       if @tweeet.save
-        format.html { redirect_to root_path, notice: 'Tweeet was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Tweet was successfully created.' }
         format.json { render :show, status: :created, location: @tweeet }
       else
-        format.html { render :new }
-        format.json { render json: @tweeet.errors, status: :unprocessable_entity }
+        format.html { redirect_to @tweeet, alert: @tweeet.errors.full_messages.to_sentence }
+        format.json { render :index, status: :unprocessable_entity, location: @tweeet }
       end
     end
   end
@@ -47,7 +47,7 @@ class TweeetsController < ApplicationController
   def update
     respond_to do |format|
       if @tweeet.update(tweeet_params)
-        format.html { redirect_to @tweeet, notice: 'Tweeet was successfully updated.' }
+        format.html { redirect_to @tweeet, notice: 'Tweet was successfully updated.' }
         format.json { render :show, status: :ok, location: @tweeet }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class TweeetsController < ApplicationController
   def destroy
     @tweeet.destroy
     respond_to do |format|
-      format.html { redirect_to tweeets_url, notice: 'Tweeet was successfully deleted.' }
+      format.html { redirect_to tweeets_url, notice: 'Tweet was successfully deleted.' }
       format.json { head :no_content }
     end
   end

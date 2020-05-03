@@ -24,15 +24,15 @@
       <div id="navbarExample" class="navbar-menu">
         <div class="navbar-end">
           <div class="navbar-item">
-            <div class="field is-grouped">
-              <p class="control">
-                <%= link_to "New Tweet", tweeets_path, class: "button is-info is-inverted" %>
-              </p>
-              <% if user_signed_in? %>
+            <% if user_signed_in? %>
+              <div class="field is-grouped">
+                <p class="control">
+                  <%= link_to "New Tweet", tweeets_path, class: "button is-info is-inverted" %>
+                </p>
                 <div class="dropdown">
                   <div class="dropdown-trigger">
                     <button class="button is-info" aria-haspopup="true" aria-controls="dropdown-menu3">
-                      <span><%= current_user.name %></span>
+                      <span><%= current_user.username %></span>
                       <span class="icon is-small">
                         <i class="fa fa-bars" aria-hidden="true"></i>
                       </span>
@@ -77,10 +77,13 @@
     <script type="text/javascript">
       $(document).ready(function(){
         setTimeout(function(){
-          $('.notification').fadeOut('slow');
+          $('.notification.is-primary').fadeOut('slow');
         }, 1500);
+        setTimeout(function(){
+          $('.notification.is-danger').fadeOut('slow');
+        }, 3500);
       });
-    
+
       var dropdown = document.querySelector('.dropdown');
       dropdown.addEventListener('click', function(event) {
         event.stopPropagation();

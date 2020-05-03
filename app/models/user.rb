@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :tweeets
+
+  validates_uniqueness_of :username, case_sensitive: false
+  validates_presence_of :username, :name
 end
