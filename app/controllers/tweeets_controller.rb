@@ -5,7 +5,7 @@ class TweeetsController < ApplicationController
   # GET /tweeets
   # GET /tweeets.json
   def index
-    @tweeets = Tweeet.all.order("created_at DESC")
+    @tweeets = Tweeet.paginate(page: params[:page], per_page: 10).order("created_at DESC") 
     @tweeet = Tweeet.new
     user_signed_in? ? @users = User.order("RANDOM()").limit(4).where.not(id: current_user.id) : @users = User.order("RANDOM()").limit(4)
   end
