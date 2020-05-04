@@ -12,6 +12,11 @@
                   required: false %>
   </div>
 </div>
-<%= f.button :submit, class: "button is-info" %>
-<%= link_to "Cancel", @tweeet, class: "button is-warning"%>
+<%= f.button :submit, "Create Tweet", class: "button is-info" %>
+<%= f.button :button, "Clear Tweet", type: "button", onclick: "clearText()", class: "button is-light" %>
+<script>
+  function clearText(){
+    document.getElementById("tweeet_tweeet").value = "";
+  }
+</script>
 <% end %>

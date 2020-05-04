@@ -87,7 +87,7 @@ RSpec.describe TweeetsController, type: :controller do
   context "when deleting a tweet" do
     let!(:tweeet) { create :tweeet }
    
-    it "should delete product" do
+    it "should delete tweet" do
       expect { delete :destroy, params: { id: tweeet.id } }.to change(Tweeet, :count).by(-1)
       expect(flash[:notice]).to eq("Tweet was successfully deleted.")
     end

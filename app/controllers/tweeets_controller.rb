@@ -50,8 +50,8 @@ class TweeetsController < ApplicationController
         format.html { redirect_to @tweeet, notice: 'Tweet was successfully updated.' }
         format.json { render :show, status: :ok, location: @tweeet }
       else
-        format.html { render :edit }
-        format.json { render json: @tweeet.errors, status: :unprocessable_entity }
+        format.html { redirect_to @tweeet, alert: @tweeet.errors.full_messages.to_sentence }
+        format.json { render :show, status: :unprocessable_entity, location: @tweeet }
       end
     end
   end
